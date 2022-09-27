@@ -1,6 +1,7 @@
 const express = require('express'),
     server = express();
 const path = require('path');
+const PORT = process.env.PORT || 8080;
 
 
 
@@ -8,7 +9,6 @@ server.use(express.urlencoded({ extended: true }));
 server.use(express.static(path.join(__dirname, 'public')));
 
 
-server.set('port', process.env.PORT || 8080);
 
 server.get('/', (req, res) => {
     res.sendFile('/index.html', { root: __dirname });
@@ -27,6 +27,6 @@ server.get('/partner', (req, res) => {
     });
 });
 
-server.listen(8080, () => {
-    console.log('Express server started at port 8080');
+server.listen(PORT, () => {
+    console.log(`Express server started at port ${PORT}`);
 });
